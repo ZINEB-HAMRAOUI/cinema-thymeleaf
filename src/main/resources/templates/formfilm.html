@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+layout:decorator="template1"
+>
+<head>
+<meta charset="utf-8">
+<title>Insert title here</title>
+
+</head>
+<body>
+<div layout:fragment="pageContent">
+
+
+
+ 
+ <div class="container mt-5">
+ <div class="col-md-6">
+ <div class="card">
+
+  <div class="card-header" th:if="${film.id==null}">Saisir ub film</div>
+ <div class="card-header" th:if="${film.id!=null}">mise à jour le film</div>
+ 
+  <div class="card-body">
+    <form th:action="@{savefilm}" method="post">
+    
+    
+      <div class="form-group">
+       <label class="control-label">Id:</label>
+        <label class="control-label" th:text="${film.id}"></label>
+      
+       <input type="hidden" name="id" class="form-control" th:value="${film.id}"/>
+       </div>
+       
+       <div class="form-group">
+       <label class="control-label">description:</label>
+       <input type="text" name="description" class="form-control" th:value="${film.description}"/>
+       <span></span>
+       </div>
+          <div class="form-group">
+       <label class="control-label">duree:</label>
+       <input type="number" name="duree" class="form-control" th:value="${film.duree}"/>
+       <span></span>
+       </div>
+        <div class="form-group">
+       <label class="control-label">photo:</label>
+        <input type="file" name="photo" class="form-control" th:value="${film.photo}"/>
+       <span></span>
+       </div>
+          <div class="form-group">
+       <label class="control-label">realisateur:</label>
+       <input type="text" name="realisateur" class="form-control" th:value="${film.realisateur}"/>
+       <span></span>
+       </div>
+        
+             <div class="form-group">
+       <label class="control-label">titre:</label>
+       <input type="text" name="titre" class="form-control" th:value="${film.titre}"/>
+       <span></span>
+       </div>
+             <div class="form-group">
+       <label class="control-label">categorie:</label>
+       <input type="number" name="categorie" class="form-control" th:value="${film.categorie}"/>
+       <span></span>
+          </div><button class="btn btn-success" type="submit">save</button>
+   
+       </div>
+      </form>
+</div></div></div></div>
+</div>
+</body>
+</html>

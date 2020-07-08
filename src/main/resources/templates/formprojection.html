@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+layout:decorator="template1"
+>
+<head>
+<meta charset="utf-8">
+<title>Insert title here</title>
+
+</head>
+<body>
+<div layout:fragment="pageContent">
+
+ <div class="container mt-5">
+ <div class="col-md-6">
+ <div class="card">
+ <div class="card-header" th:if="${projection.id==null}">Saisir projection</div>
+ <div class="card-header" th:if="${projection.id!=null}">mise à jour projection</div>
+ 
+ <div class="card-body">
+    <form th:action="@{saveprojection}" method="post">
+      
+      <div class="form-group">
+       <label class="control-label">Id:</label>
+        <label class="control-label" th:text="${projection.id}"></label>
+      
+       <input type="hidden" name="id" class="form-control" th:value="${projection.id}"/>
+      
+       </div>
+       <div class="form-group">
+       <label class="control-label">date:</label>
+       <input type="date" name="dateProjection" class="form-control" th:value="${projection.dateProjection}"/>
+       <span></span>
+       </div>
+        <div class="form-group">
+       <label class="control-label">prix:</label>
+       <input type="number" name="prix" class="form-control" th:value="${projection.prix}"/>
+       <span></span>
+       </div>
+        <div class="form-group">
+       <label class="control-label">film:</label>
+       <input type="number" name="film" class="form-control" th:value="${projection.film}"/>
+       <span></span>
+       </div>
+        <div class="form-group">
+       <label class="control-label">salle:</label>
+       <input type="number" name="salle" class="form-control" th:value="${projection.salle}"/>
+       <span></span>
+       </div>
+        <div class="form-group">
+       <label class="control-label">seance:</label>
+       <input type="number" name="seance" class="form-control" th:value="${projection.seance}"/>
+       <span></span>
+       </div>
+      <button class="btn btn-success" type="submit">save</button>
+    </form></div></div></div>
+ </div>
+</div>
+</body>
+</html>

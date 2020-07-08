@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+layout:decorator="template1"
+>
+<head>
+<meta charset="utf-8">
+<title>Insert title here</title>
+
+</head>
+<body>
+<div layout:fragment="pageContent">
+<h1>Projection</h1>
+<div class="container mt-5">
+                 <div class="card"> 
+                 <div class="card-header">Liste des projections</div>
+                 <div class ="card-body">
+                 <form method="get" th:actions="@{projections}">
+       <div class= "form-group">
+            <label>ID:</label>
+                   <input type= "text" name="keyword" placeholder="Search name.." th:value="${keyword}"> 
+                           <button class= "btn btn-success"> Search </button>
+       </div>
+ </form>
+ <table class="table">
+    <tr>
+    
+  <th>id</th><th>date projection</th><th>prix</th><th>film</th><th>salle</th><th>séance</th>
+    </tr>
+<!-- --> <tr th:each="p:${projections}">
+<td th:text="${p.id}"></td>
+<td th:text="${p.dateProjection}"></td>
+<td th:text="${p.prix}"></td>
+<td th:text="${p.film.id}"></td>
+<td th:text="${p.salle.id}"></td>
+<td th:text="${p.seance.id}"></td>
+<td sec:authorize="hasRole('ADMIN')">
+<a onclick="return confirm('Etes vous sur de vouler suppprimer?')">
+<a class="btn btn-danger" th:href="@{'/deleteprojection/{id}'(id=${p.id})}"  th:method="delete">Delete</a>
+ </td>
+ 
+<td sec:authorize="hasRole('ADMIN')"><a class="btn btn-info" th:href="@{editprojection(id=${p.id})}">Modifier</a></td>
+ </tr>
+
+</table>
+<ul class="nav nav-pills">
+<li  th:each="page,status:${pages}">
+<a th:class="${status.index==currentPage?'btn btn-primary':'btn'}" th:href="@{projection(page=${status.index},keyword=${keyword})}" th:text="${status.index}"></a>
+</li>
+</ul></div></div>
+ </div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th= "http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<h3>hello</h3>
+
+<table class="table">
+    <tr>
+    
+  <th>id</th><th>name</th><th>longtide</th><th>latitude</th>
+	<th>nombreSalles</th>
+    </tr>
+<tr th:each="p:${cinemas}">
+<td th:text="${p.id}"></td>
+<td th:text="${p.name}"></td>
+<td th:text="${p.longtide}"></td>
+<td th:text="${p.latitude}"></td>
+<td th:text="${p.nombreSalles}"></td> 
+
+<td th:text="${p.ville.id}"></td> 
+
+ 
+
+</table>
+
+</body>
+</html>

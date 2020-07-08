@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+layout:decorator="template1">
+<head>
+<meta charset="utf-8">
+<title>Insert title here</title>
+
+</head>
+<body>
+<div layout:fragment="pageContent">
+
+ <div class="container mt-5">
+ <div class="col-md-6">
+ <div class="card">
+ <div class="card-header" th:if="${ticket.id==null}">ajouter ticket</div>
+ <div class="card-header" th:if="${ticket.id!=null}">mise à jour ticket</div>
+  <div class="card-body">
+    <form th:action="@{saveticket}" method="post">
+      
+     <div class="form-group">
+       <label class="control-label">Id:</label>
+        <label class="control-label" th:text="${ticket.id}"></label>
+      
+       <input type="hidden" name="id" class="form-control" th:value="${ticket.id}"/>
+      
+       </div>
+    <div class="form-group">
+       <label class="control-label">code paiement:</label>
+       <input type="number" name="codePaiement" class="form-control" th:value="${ticket.codePaiement}"/>
+       <span></span>
+       </div>
+    <div class="form-group">
+       <label class="control-label">client:</label>
+       <input type="text" name="nomClient" class="form-control" th:value="${ticket.nomClient}"/>
+       <span></span>
+       </div>
+        <div class="form-group">
+       <label class="control-label">prix:</label>
+       <input type="number" name="prix" class="form-control" th:value="${ticket.prix}"/>
+       <span></span>
+       </div>
+        <div class="form-group">
+       <label class="control-label">reserve:</label>
+       <input type="number" name="reserve" class="form-control" th:value="${ticket.reserve}"/>
+       
+       </div>
+        <div class="form-group">
+       <label class="control-label">place:</label>
+       <input type="number" name="place" class="form-control" th:value="${ticket.place}"/>
+       <span></span>
+       </div>
+         <div class="form-group">
+       <label class="control-label">projection:</label>
+       <input type="number" name="projection" class="form-control" th:value="@{ticket.projection}"/>
+       <span></span>
+       </div>
+    
+    <button class="btn btn-success" type="submit">save</button>
+      </form></div>
+ </div></div></div></div>
+
+</body>
+</html>
